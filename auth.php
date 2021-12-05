@@ -1,46 +1,15 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- * @author Tim St.Clair
- * @author Mike Uding <mike@sebsoft.nl> - Only changes from 2015-01.
- * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @package moodle / wordpress single sign on (wp2moodle)
- *
- * source https://github.com/frumbert/wp2moodle
- * Authentication Plugin: Wordpress 2 Moodle Single Sign On
- *
- * 2012-05-28  File created.
- * 2015-01-06   Added support for courses to be added via the login hook
- */
 
 if (!defined('MOODLE_INTERNAL')) {
-    die('Direct access to this script is forbidden.');    ///  It must be included from a Moodle page
+    die('Direct access to this script is forbidden.');    
 }
 
 require_once($CFG->libdir.'/authlib.php');
 
-/**
- * Plugin for no authentication.
- */
+
 class auth_plugin_wp2moodle extends auth_plugin_base {
 
-    /**
-     * Constructor.
-     */
+   
     public function auth_plugin_wp2moodle() {
         debugging('Use of class name as constructor is deprecated', DEBUG_DEVELOPER);
         self::__construct();
@@ -50,14 +19,7 @@ class auth_plugin_wp2moodle extends auth_plugin_base {
         $this->config = get_config('auth_wp2moodle');
     }
 
-    /**
-     * Returns true if the username and password work or don't exist and false
-     * if the user exists and the password is wrong.
-     *
-     * @param string $username The username
-     * @param string $password The password
-     * @return bool Authentication success or failure.
-     */
+   
     function user_login ($username, $password = null) {
         global $CFG, $DB;
         if ($password == null || $password == '') { return false; }
@@ -71,40 +33,22 @@ class auth_plugin_wp2moodle extends auth_plugin_base {
         return true;
     }
 
-    /**
-     * Returns true if this authentication plugin is 'internal'.
-     *
-     * @return bool
-     */
+   
     function is_internal() {
         return false;
     }
 
-    /**
-     * Returns true if this authentication plugin can change the user's
-     * password.
-     *
-     * @return bool
-     */
+   
     function can_change_password() {
         return false;
     }
 
-    /**
-     * Returns the URL for changing the user's pw, or empty if the default can
-     * be used.
-     *
-     * @return moodle_url
-     */
+   
     function change_password_url() {
         return null;
     }
 
-    /**
-     * Returns true if plugin allows resetting of internal password.
-     *
-     * @return bool
-     */
+   
     function can_reset_password() {
         return false;
     }
@@ -114,34 +58,22 @@ class auth_plugin_wp2moodle extends auth_plugin_base {
         set_moodle_cookie('nobody');
         require_logout();
         if (isset($this->config->logoffurl)) {
-            if (ob_get_level() !== 0) ob_end_clean(); // in case we are inside a buffer
-            // 301: move permanently
-            // 302: found
-            // 303: see other
-            // 307: temporary redirect
+            if (ob_get_level() !== 0) ob_end_clean(); 
+            
             header("Location: " . $this->config->logoffurl, true, 301);
-            exit; // flush header
+            exit; 
         }
     }
 
 
-    /**
-     * Prints a form for configuring this authentication plugin.
-     *
-     * This function is called from admin/auth.php, and outputs a full page with
-     * a form for configuring this plugin.
-     *
-     * @param array $page An object containing all the data for this page.
-     */
+   
     function config_form($config, $err, $user_fields) {
         include "config.html";
     }
 
-    /**
-     * Processes and stores configuration data for this authentication plugin.
-     */
+   
    function process_config($config) {
-        // set to defaults if undefined
+        
         if (!isset($config->sharedsecret)) {
             $config->sharedsecret = 'this is not a secure key, change it';
         }
@@ -164,7 +96,7 @@ class auth_plugin_wp2moodle extends auth_plugin_base {
             $config->idprefix = '';
         }
 
-        // save settings
+        
         set_config('sharedsecret', $config->sharedsecret, 'auth_wp2moodle');
         set_config('logoffurl', $config->logoffurl, 'auth_wp2moodle');
         set_config('timeout', $config->timeout, 'auth_wp2moodle');

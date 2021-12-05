@@ -1,4 +1,4 @@
-// purpose: register a wp2moodle button in the rich editor in the admin interface
+
 (function() {
     tinymce.create('tinymce.plugins.wp2m', {
         init : function(ed, url) {
