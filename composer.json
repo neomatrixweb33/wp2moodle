@@ -1,15 +1,15 @@
 {
-  "name": "frumbert/wp2moodle",
-  "description": "combination moodle and wordpress plugin for single sign on from wordpress to moodle",
+  "name": "neomatrixweb33/wp2moodle",
+  "description": "combinaison moodle et wordpress plugin pour une connexion unique de wordpress à moodle",
   "type": "wordpress-plugin",
   "keywords": [
     "moodle",
     "wordpress"
   ],
-  "homepage": "http://wordpress.frumbert.org",
+  "homepage": "https://www.crp-epnak-foad.com/",
   "license": "GPL2",
   "support": {
-    "issues": "https://github.com/frumbert/wp2moodle"
+    "issues": "https://github.com/neomatrixweb33/wp2moodle"
   },
   "require": {
     "composer/installers": "~1.0",
