@@ -1,26 +1,26 @@
 wp2moodle
 =========
 
-WordPress to Moodle (wp2moodle) is a plugin that allows users in WordPress to open Moodle courses without getting a logon box in between. It will also (optionally) enrol the user into cohorts, courses and groups.
+WordPress to Moodle (wp2moodle) est un plugin qui permet aux utilisateurs de WordPress d'ouvrir des cours Moodle sans avoir de boîte de connexion entre les deux. Il inscrira également (éventuellement) l'utilisateur dans des cohortes, des cours et des groupes.
 
-It uses an encrypted link and **doesn’t rely on SSL / https** (though it’s recommended you use SSL where possible). Your WordPress and Moodle servers might be on the same host, or can be on different networks or server technologies. Since it only uses hyperlinks to communicate, there’s no special setup.
+Il utilise un lien crypté et ** ne repose pas sur SSL / https ** (bien qu'il soit recommandé d'utiliser SSL dans la mesure du possible). Vos serveurs WordPress et Moodle peuvent être sur le même hôte ou sur des réseaux ou des technologies de serveur différents. Comme il n'utilise que des hyperliens pour communiquer, il n'y a pas de configuration spéciale.
 
-The plugin has these limitations by design:
+Le plugin a ces limitations par conception :
 
-- The users that created through this plugin can’t sign in to Moodle using their WordPress username – they must sign in from the link this plugin generates.
-- You can’t go in reverse; i.e. log onto Moodle and be signed back into WordPress (using those users – other auth plugins still work)
-- WordPress is not notified of any course results
-- WordPress is not notified of any changes to the user profile done by Moodle (though the plugin normally disables the password)
-- WordPress has no way of knowing if the values being linked to exist within Moodle (e.g. it doesn't check your work)
+- Les utilisateurs créés via ce plugin ne peuvent pas se connecter à Moodle en utilisant leur nom d'utilisateur WordPress - ils doivent se connecter à partir du lien généré par ce plugin.
+- Vous ne pouvez pas faire marche arrière ; c'est-à-dire connectez-vous à Moodle et reconnectez-vous à WordPress (en utilisant ces utilisateurs - d'autres plugins d'authentification fonctionnent toujours)
+- WordPress n'est informé d'aucun résultat de cours
+- WordPress n'est pas informé des modifications apportées au profil utilisateur par Moodle (bien que le plugin désactive normalement le mot de passe)
+- WordPress n'a aucun moyen de savoir si les valeurs liées existent dans Moodle (par exemple, il ne vérifie pas votre travail)
 
-Data is encrypted (using aes-256-cbc via openssl) at the Wordpress end and handed over a standard http GET request. Only the minimum required information is sent in order to create a Moodle user record. The user is automatically created if not present at the Moodle end, and then authenticated, and (optionally) enrolled in a Cohort, a Group, or both.
+Les données sont cryptées (à l'aide d'aes-256-cbc via openssl) du côté de Wordpress et transmises via une requête http GET standard. Seules les informations minimales requises sont envoyées afin de créer un enregistrement d'utilisateur Moodle. L'utilisateur est automatiquement créé s'il n'est pas présent à la fin de Moodle, puis authentifié et (éventuellement) inscrit dans une cohorte, un groupe ou les deux.
 
-How it works
+Comment ça fonctionne
 ------------
 
-This plugin allows you to place a shortcode in a post that passes encrypted logon information to Moodle (requires this plugin to be also installed into Moodle). The user will be added to Moodle and optionally enrolled in the specified Cohort(s), Course(s) and/or Group(s).
+Ce plugin vous permet de placer un shortcode dans une publication qui transmet les informations de connexion cryptées à Moodle (nécessite que ce plugin soit également installé dans Moodle). L'utilisateur sera ajouté à Moodle et éventuellement inscrit dans la ou les cohortes, cours et/ou groupes spécifiés.
 
-Use the Moodle button on the rich editor to insert the shortcode, or enter the details manually using the examples below as a guide.
+Utilisez le bouton Moodle sur l'éditeur riche pour insérer le shortcode, ou entrez les détails manuellement en utilisant les exemples ci-dessous comme guide.
 
 Example: `[wp2moodle class='css-classname' group='group1' cohort='class1' target='_blank' authtext='Please log on']launch the course[/wp2moodle]`
 
@@ -38,41 +38,27 @@ Example: `[wp2moodle class='css-classname' group='group1' cohort='class1' target
 | `url` | optional | Url to open after logon (overrides everything else) | `/mod/customplugin/index.php?id=123` |
 
 
-Requirements
+Conditions
 ------------
-PHP 5.6+ (Reccomended: 7.3 or higher)
-Moodle 3.1 or above (Reccomended: 3.6.4 or higher, last checked in 3.10.1+)
-Wordpress 4 or above (Reccomended: 5.2.2 or higher, last checked in 5.7)
-openssl extension on your php (you probably have this)
+PHP 5.6+ (Recommandé : 7.3 ou supérieur)
+Moodle 3.1 ou supérieur (Recommandé : 3.6.4 ou supérieur, dernière vérification dans 3.10.1+)
+Wordpress 4 ou supérieur (Recommandé : 5.2.2 ou supérieur, dernière vérification en 5.7)
+extension openssl sur votre php (vous l'avez probablement)
 
-How to install this plugin
+Comment installer ce plugin
 ---------------------
 
-1. download the plugin into a zip file named wp2moodle.zip
-2. in wordpress choose `Plugins > Add New > Upload Plugin` and upload and active the plugin in the normal way
-3. in moodle choose `Site Administration > Plugins > Install plugins` and upload and activate thie plugin in the normal way
+1. téléchargez le plugin dans un fichier zip nommé wp2moodle.zip
+2. dans wordpress, choisissez `Plugins > Add New > Upload Plugin` et téléchargez et activez le plugin de la manière normale
+3. dans moodle, choisissez `Administration du site > Plugins > Installer les plugins` et téléchargez et activez le plugin de la manière normale
 
 
 Usage:
 ------
-You can not use this plugin directly; it is launched by wp2moodle from within Wordpress.
+Vous ne pouvez pas utiliser ce plugin directement ; il est lancé par wp2moodle depuis Wordpress.
 
-*IMPORTANT*: when linking to things by their `id` make sure you use the moodle field `id number`. This is often blank by default - you need to set it.
-
-
-
-Problems?
----------
-If you are having problems, try these first. If you raise an issue, let me know ALL the version numbers of your installations, what server platform they are running on, and any relevent error messages, otherwise I won't be able to help.
-
-1. Confirm that you have the requirement met to run the plugin (e.g. openssl must be installed and show up in phpinfo)
-2. Confirm that your course has the appropriate enrolment providers set up already (e.g. cohort based enrolment or manual enrolment)
-3. Confirm that your shortcode is working in Wordpress
-4. Confirm that you are using the text/string version of an identifier and NOT the numerical id of a course or cohort. the Id Number field is NOT set by default in moodle- you have to add something.
-5. Look in your sites php error log to see if you can see if the plugin is silently throwing an error that you are not seeing on the page. In Moodle you can turn on DEVELOPER DEBUGGING to reveal crashes or error messages.
-6. If you're trying one lookup type (e.g. group) then try switching to a different type (e.g. cohort). This may help me narrow down if it's a particular lookup type that is affected.
-7. If you are using IDNUMBER matching on the user, ensure you have a prefix set and the value isn't clashing with existing user records (e.g. mdlw8_user_mneuse_uix error)
+*IMPORTANT* : lorsque vous créez un lien vers des éléments par leur « id », assurez-vous d'utiliser le champ moodle « numéro d'identification ». Ceci est souvent vide par défaut - vous devez le définir.
 
 Licence:
 --------
-GPL3, as per Moodle.
+GPL3, selon Moodle.
