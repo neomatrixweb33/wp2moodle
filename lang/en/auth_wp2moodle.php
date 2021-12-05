@@ -1,60 +1,39 @@
 <?php
 
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- * @package   auth_wp2moodle
- * @copyright 2012 onwards Tim St.Clair
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 $string['pluginname'] = 'Wordpress 2 Moodle';
 
 $string['settings_heading'] = 'Wordpress 2 Moodle';
-$string['settings_description'] = 'Uses Wordpress user details to create user & log onto Moodle (one way Single Sign On)';
+$string['settings_description'] = 'Utilise les détails utilisateur Wordpress pour créer un utilisateur et se connecter à Moodle (authentification unique unidirectionnelle)';
 
 $string['settings_sharedsecret'] = 'Shared secret';
-$string['settings_sharedsecret_desc'] = 'Encryption key which matches Wordpress';
+$string['settings_sharedsecret_desc'] = 'Clé de cryptage qui correspond à Wordpress';
 
-$string['settings_timeout'] = 'Link timeout';
-$string['settings_timeout_desc'] = 'Minutes before incoming link is considered invalid (use 0 for no expiry)';
+$string['settings_timeout'] = 'Délai expiration du lien';
+$string['settings_timeout_desc'] = 'Minutes avant que le lien entrant ne soit considéré comme invalide (utilisez 0 pour aucune expiration)';
 
-$string['settings_logoffurl'] = 'Logoff Url';
-$string['settings_logoffurl_desc'] = 'Url to redirect to if the user presses Logoff (optional)';
+$string['settings_logoffurl'] = 'URL de déconnexion';
+$string['settings_logoffurl_desc'] = 'URL vers laquelle rediriger si utilisateur appuie sur Déconnexion (facultatif)';
 
-$string['settings_autoopen'] = 'Auto open course';
-$string['settings_autoopen_desc'] = 'Automatically open the course after successful authentication';
+$string['settings_autoopen'] = 'Cours à ouverture automatique';
+$string['settings_autoopen_desc'] = 'Ouvrir automatiquement le cours après une authentification réussie';
 
-$string['settings_updateuser'] = 'Update user profile fields using Wordpress values?';
-$string['settings_updateuser_desc'] = 'When YES, user profile fields (firstname, lastname, email, idnumber) are updated to use the supplied values. Turn this off if you want to let the user manage their profile fields independantly.';
+$string['settings_updateuser'] = 'Mettre à jour les champs du profil utilisateur avec les valeurs Wordpress ?';
+$string['settings_updateuser_desc'] = 'Lorsque OUI, les champs du profil utilisateur (prénom, nom, e-mail, numéro identification) sont mis à jour pour utiliser les valeurs fournies. Désactivez cette option si vous souhaitez laisser utilisateur gérer les champs de son profil de manière indépendante.';
 
-$string['settings_redirectnoenrol'] = 'Only redirect user to course?';
-$string['settings_redirectnoenrol_desc'] = 'When YES, course enrolment is bypassed. The user will still be redirected to the course homepage (if not otherwise overridden).';
+$string['settings_redirectnoenrol'] = 'Ne rediriger utilisateur que vers le cours ?';
+$string['settings_redirectnoenrol_desc'] = 'Lorsque OUI, inscription au cours est ignorée. utilisateur sera toujours redirigé vers la page accueil du cours (il est pas remplacé par ailleurs).';
 
-$string['settings_firstname'] = 'First name (if empty)';
-$string['settings_firstname_desc'] = 'If no first name is specified by Wordpress, use this value';
+$string['settings_firstname'] = 'Prénom (si vide)';
+$string['settings_firstname_desc'] = 'Si aucun prénom est spécifié par Wordpress, utilisez cette valeur';
 
-$string['settings_lastname'] = 'Last name (if empty)';
-$string['settings_lastname_desc'] = 'If no last name is specified by Wordpress, use this value';
+$string['settings_lastname'] = 'Nom (si vide)';
+$string['settings_lastname_desc'] = 'Si aucun nom de famille est spécifié par Wordpress, utilisez cette valeur';
 
-$string['settings_matchfield'] = 'Field used to match';
-$string['settings_matchfield_desc'] = 'When creating or matching users, use this database field to match records (default: idnumber)';
+$string['settings_matchfield'] = 'Champ utilisé pour faire correspondre';
+$string['settings_matchfield_desc'] = 'Lors de la création ou de la correspondance utilisateurs, utilisez ce champ de base de données pour faire correspondre les enregistrements (par défaut : idnumber)';
 
-$string['settings_idprefix'] = 'Prefix for user idnumber';
-$string['settings_idprefix_desc'] = 'Optional string value to store in front of of the idnumber to avoid clashes (default: wp2m).';
+$string['settings_idprefix'] = 'Préfixe du numéro identification utilisateur (idnumber)';
+$string['settings_idprefix_desc'] = 'Valeur de chaîne facultative à stocker devant le numéro identification pour éviter les conflits (par défaut : wp2m).';
 
-$string['notloggedindebug'] = 'The login attempt failed. Reason: {$a}';
-$string['loginerror_invaliddomain'] = 'The email address is not allowed at this site.';
+$string['notloggedindebug'] = 'La tentative de connexion a échoué. Raison: {$a}';
+$string['loginerror_invaliddomain'] = 'Votre adresse e-mail non autorisée sur ce site.';
